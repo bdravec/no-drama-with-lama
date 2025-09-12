@@ -5,9 +5,29 @@ import "./App.css";
 
 function App() {
   const [count,setCount] = useState(0);
+  const [isMenuOpen,setIsMenuOpen] = useState(false);
 
   return (
     <>
+      <nav className="top-nav">
+        <button
+          className={"hamburger" + (isMenuOpen ? " is-open" : "")}
+          aria-label="Menu"
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen((v) => !v)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        {isMenuOpen && (
+          <div className="menu" role="menu">
+            <a href="#about-vibe-coding" role="menuitem" onClick={() => setIsMenuOpen(false)}>About Vibe Coding</a>
+            <a href="#about-me" role="menuitem" onClick={() => setIsMenuOpen(false)}>About me</a>
+            <a href="#offers" role="menuitem" onClick={() => setIsMenuOpen(false)}>Offers</a>
+          </div>
+        )}
+      </nav>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
